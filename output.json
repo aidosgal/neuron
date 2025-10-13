@@ -1,0 +1,12 @@
+{
+    "decisions": [
+        {"action":"adjust_signal","segment":"R1","newCycle":"extend_green_by_15s"},
+        {"action":"reroute","from":"R1","to":"R3","reason":"accident_on_R1"},
+        {"action":"activate_congestion_charge","area":"Downtown"}
+    ],
+    "explanations": [
+        "R1 congested: vehicleCount 150, avgSpeed 12.5 -> HIGH congestion",
+        "Accident on R1 -> reroute recommended",
+        "Policy allows congestion charge -> activating"
+    ]
+}
