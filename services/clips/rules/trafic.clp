@@ -1,5 +1,6 @@
 (deffacts input
   (area "Downtown")
+  (sector)
   (avg_speed 18)
   (public_transport_usage 0.25)
   (air_quality_index 120))
