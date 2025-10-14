@@ -19,18 +19,15 @@ type Engine struct {
 	env *C.Environment
 }
 
-// NewEngine creates a new CLIPS environment
 func NewEngine() *Engine {
 	env := C.CreateEnvironment()
 	return &Engine{env: env}
 }
 
-// Destroy cleans up
 func (e *Engine) Destroy() {
 	C.DestroyEnvironment(e.env)
 }
 
-// LoadRules loads multiple CLIPS rule files
 func (e *Engine) LoadRules(paths []string) error {
 	for _, path := range paths {
 		cpath := C.CString(path)
@@ -42,9 +39,7 @@ func (e *Engine) LoadRules(paths []string) error {
 	return nil
 }
 
-// InjectInput asserts JSON input as CLIPS facts
 func (e *Engine) InjectInput(input entity.Input) {
-	// Road segments
 	for _, seg := range input.RoadSegments {
 		fact := fmt.Sprintf(
 			`(roadSegment (id "%s") (vehicleCount %d) (avgSpeed %.1f) (capacity %d) (type "%s"))`,
@@ -54,7 +49,6 @@ func (e *Engine) InjectInput(input entity.Input) {
 		C.free(unsafe.Pointer(cfact))
 	}
 
-	// Incidents
 	for _, inc := range input.Incidents {
 		fact := fmt.Sprintf(
 			`(incident (segmentId "%s") (type "%s") (severity %d))`,
@@ -64,7 +58,6 @@ func (e *Engine) InjectInput(input entity.Input) {
 		C.free(unsafe.Pointer(cfact))
 	}
 
-	// Weather
 	weatherFact := fmt.Sprintf(
 		`(weather (condition "%s") (visibility %.2f))`,
 		input.Weather.Condition, input.Weather.Visibility)
@@ -72,7 +65,6 @@ func (e *Engine) InjectInput(input entity.Input) {
 	C.AssertString(e.env, cfact)
 	C.free(unsafe.Pointer(cfact))
 
-	// Policy
 	policyFact := fmt.Sprintf(
 		`(policy (congestionCharge %t) (publicTransportPriority %t))`,
 		input.Policy.CongestionCharge, input.Policy.PublicTransportPriority)
@@ -81,26 +73,29 @@ func (e *Engine) InjectInput(input entity.Input) {
 	C.free(unsafe.Pointer(cfact))
 }
 
-// RunInference executes CLIPS rules
 func (e *Engine) RunInference() {
-	C.Reset(e.env)
 	C.Run(e.env, -1)
 }
 
-// Infer runs everything and collects output
 func (e *Engine) Infer(input entity.Input) entity.Output {
+	C.Reset(e.env)
 	e.InjectInput(input)
 	e.RunInference()
 
 	decisions := []entity.Decision{}
 	explanations := []string{}
 
-	// Iterate all facts
 	var fact *C.Fact
-	for fact = C.GetNextFact(e.env, nil); fact != nil; fact = C.GetNextFact(e.env, fact) {
-		// Get template name
-		deftemplate := C.FactDeftemplate(fact)
-		templateName := C.GoString(C.DeftemplateName(deftemplate))
+	for fact = C.GetNextFactWrapper(e.env, nil); fact != nil; fact = C.GetNextFactWrapper(e.env, fact) {
+		deftemplate := C.GetFactDeftemplate(fact)
+		if deftemplate == nil {
+			continue
+		}
+		templateNameC := C.GetDeftemplateName(deftemplate)
+		if templateNameC == nil {
+			continue
+		}
+		templateName := C.GoString(templateNameC)
 
 		switch templateName {
 		case "decision":
@@ -108,8 +103,12 @@ func (e *Engine) Infer(input entity.Input) entity.Output {
 			for _, slot := range []string{"action", "segment", "from", "to", "reason", "newCycle", "area", "priority"} {
 				slotC := C.CString(slot)
 				val := C.GetFactSlotString(fact, slotC)
+				C.free(unsafe.Pointer(slotC))
+
 				if val != nil {
 					value := C.GoString(val)
+					C.FreeString(val)
+
 					switch slot {
 					case "action":
 						d.Action = value
@@ -129,16 +128,17 @@ func (e *Engine) Infer(input entity.Input) entity.Output {
 						fmt.Sscanf(value, "%d", &d.Priority)
 					}
 				}
-				C.free(unsafe.Pointer(slotC))
 			}
 			decisions = append(decisions, d)
 		case "explanation":
 			slotC := C.CString("text")
 			val := C.GetFactSlotString(fact, slotC)
+			C.free(unsafe.Pointer(slotC))
+
 			if val != nil {
 				explanations = append(explanations, C.GoString(val))
+				C.FreeString(val)
 			}
-			C.free(unsafe.Pointer(slotC))
 		}
 	}
 

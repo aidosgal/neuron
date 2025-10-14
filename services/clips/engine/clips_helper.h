@@ -3,6 +3,10 @@
 
 #include "clips.h"
 
-const char* GetFactSlotString(Fact* fact, const char* slotName);
+char* GetFactSlotString(Fact* fact, const char* slotName);
+void FreeString(char* str);
+Fact* GetNextFactWrapper(Environment* env, Fact* fact);
+Deftemplate* GetFactDeftemplate(Fact* fact);
+const char* GetDeftemplateName(Deftemplate* deftemplate);
 
 #endif
