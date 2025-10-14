@@ -6,8 +6,8 @@ import (
 
 	"github.com/aidosgal/neuron/pkg/json"
 	"github.com/aidosgal/neuron/pkg/jwt"
-	"github.com/aidosgal/neuron/services/clips/entity"
-	"github.com/aidosgal/neuron/services/clips/usecase"
+	"github.com/aidosgal/neuron/services/device/entity"
+	"github.com/aidosgal/neuron/services/device/usecase"
 )
 
 type server struct {
@@ -15,7 +15,7 @@ type server struct {
 }
 
 type Server interface {
-	Execute(w http.ResponseWriter, r *http.Request)
+	CreateDevice(w http.ResponseWriter, r *http.Request)
 }
 
 func New(usecase usecase.Usecase) Server {
@@ -24,21 +24,23 @@ func New(usecase usecase.Usecase) Server {
 	}
 }
 
-func (s *server) Execute(w http.ResponseWriter, r *http.Request) {
-	deviceToken, err := jwt.ParseTokenFromHeader(r)
+func (s *server) CreateDevice(w http.ResponseWriter, r *http.Request) {
+	adminToken, err := jwt.ParseTokenFromHeader(r)
 	if err != nil {
 		json.WriteError(w, http.StatusUnauthorized, fmt.Errorf("invalid credentials"))
 		return
 	}
 
-	req := &entity.Input{}
+	req := &entity.CreateRequest{}
 	err = json.ParseJSON(r, req)
 	if err != nil {
 		json.WriteError(w, http.StatusBadRequest, err)
 		return
 	}
-	
-	resp, err := s.usecase.Execute(r.Context(), deviceToken, req)
+
+	req.AdminToken = adminToken
+
+	resp, err := s.usecase.CreateDevice(r.Context(), req)
 	if err != nil {
 		json.WriteError(w, http.StatusInternalServerError, err)
 		return
