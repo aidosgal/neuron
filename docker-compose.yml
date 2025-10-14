@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    container_name: neuron
+    ports:
+      - "8090:8090"
+    environment:
+      ENV: local
+      PORT: 8090
+      JWT_SECRET: ${JWTSECRET}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_HOST: db
+      DB_NAME: ${POSTGRES_DB}
+      DB_PORT: 5432
+      DB_SSLMODE: disable
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    container_name: neuron_psql_db
+    restart: always
+    environment:
+      POSTGRES_USER: neuron
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: neurondb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -73,5 +73,4 @@ func main() {
 
 	fmt.Println("Decisions:", output.Decisions)
 	fmt.Println("Explanations:", output.Explanations)
-
 }
