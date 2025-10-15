@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+
+\bibitem{jiang_spatiotemporal_2017}
+Y.~Jiang, R.~Kang, D.~Li, S.~Guo, et~al.
+\newblock Spatio-temporal propagation of traffic jams in urban traffic
+  networks.
+\newblock {\em arXiv preprint arXiv:1705.08269}, 2017.
+
+\bibitem{epj_scaling_2024}
+T.~Kittel, A.~Schadschneider, et~al.
+\newblock Scaling law of real traffic jams under varying travel demand.
+\newblock {\em EPJ Data Science}, 13(6), 2024.
+
+\bibitem{spillo_neuro_symbolic_2024}
+Giuseppe Spillo, Cataldo Musto, Marco de~Gemmis, Pasquale Lops, and Giovanni
+  Semeraro.
+\newblock Recommender systems based on neuro-symbolic knowledge graph
+  embeddings encoding first-order logic rules.
+\newblock {\em User Modeling and User-Adapted Interaction}, 34:2039--2083,
+  2024.
+
+\end{thebibliography}

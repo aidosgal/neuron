@@ -1,0 +1,5 @@
+(defrule detect-high-congestion
+   (road (id ?id) (vehicleCount ?vc) (capacity ?cap&:(> ?vc ?cap)))
+   =>
+   (assert (decision (action suggestReroute) (segment ?id) (priority 1)))
+   (printout t "High congestion detected on segment " ?id crlf))
