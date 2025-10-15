@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/VoidLinux) (preloaded format=pdflatex 2025.10.11)  15 OCT 2025 15:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/VoidLinux) (preloaded format=pdflatex 2025.10.11)  15 OCT 2025 17:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -113,103 +113,19 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write3
 \openout3 = `ResearchPaper.toc'.
 
- [2]
-Overfull \hbox (15.58406pt too wide) in paragraph at lines 29--30
-[]\OT1/cmr/m/n/10 Conventional traf-fic man-age-ment in-fras-truc-ture pre-dom-
-i-nantly op-er-ates through
- []
-
-[3]
-Overfull \hbox (2.44502pt too wide) in paragraph at lines 45--46
-[]\OT1/cmr/m/n/10 Rule-based sys-tems en-code knowl-edge through con-di-tional 
-state-ments|when
- []
-
-[4]
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 85--85
-[]   \OT1/cmtt/m/n/10 (road (id ?id) (vehicleCount ?vc) (capacity ?cap&:(> ?vc 
-?cap)))[] 
- []
-
-
-Overfull \hbox (38.24666pt too wide) in paragraph at lines 85--85
-[]   \OT1/cmtt/m/n/10 (assert (decision (action suggestReroute) (segment ?id) (
-priority 1)))[] 
- []
-
-
-Overfull \hbox (7.11159pt too wide) in paragraph at lines 101--102
+ [2] [3] [4]
+Overfull \hbox (7.11159pt too wide) in paragraph at lines 92--93
 []\OT1/cmr/m/n/10 This rule trig-gers when the ve-hi-cle den-sity ex-ceeds 75%,
  as-sert-ing a congestion-
  []
 
-[5]
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 112--112
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 103--103
 []  \OT1/cmtt/m/n/10 (assert (route-update (location ?loc) (action "divert_traf
 fic"))))[] 
  []
 
-[6]
-Overfull \hbox (143.24574pt too wide) in paragraph at lines 182--182
-[]    \OT1/cmtt/m/n/10 {"id": "R1", "vehicleCount": 150, "avgSpeed": 12.5, "cap
-acity": 300, "type": "arterial"},[] 
- []
-
-
-Overfull \hbox (132.74583pt too wide) in paragraph at lines 182--182
-[]    \OT1/cmtt/m/n/10 {"id": "R2", "vehicleCount": 80, "avgSpeed": 35.0, "capa
-city": 200, "type": "highway"},[] 
- []
-
-
-Overfull \hbox (116.99597pt too wide) in paragraph at lines 182--182
-[]    \OT1/cmtt/m/n/10 {"id": "R3", "vehicleCount": 60, "avgSpeed": 18.0, "capa
-city": 150, "type": "local"}[] 
- []
-
-
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 182--182
-[]  \OT1/cmtt/m/n/10 "policy": {"congestionCharge": true, "publicTransportPrior
-ity": true}[] 
- []
-
-[7]
-Overfull \hbox (111.74602pt too wide) in paragraph at lines 210--210
-[]      \OT1/cmtt/m/n/10 "reason": "Detected accident with severity 2 and low s
-peed; reroute recommended."[] 
- []
-
-
-Overfull \hbox (101.24611pt too wide) in paragraph at lines 210--210
-[]      \OT1/cmtt/m/n/10 "reason": "Alternative route with available capacity a
-nd good flow conditions."[] 
- []
-
-
-Overfull \hbox (85.49625pt too wide) in paragraph at lines 210--210
-[]      \OT1/cmtt/m/n/10 "reason": "Public transport priority enabled under con
-gestion and rainfall."[] 
- []
-
-
-Overfull \hbox (153.74565pt too wide) in paragraph at lines 210--210
-[]    \OT1/cmtt/m/n/10 "Rule 12 fired: IF incident(accident) AND avgSpeed < 15 
-THEN reduceGreenTime and reroute.",[] 
- []
-
-
-Overfull \hbox (85.49625pt too wide) in paragraph at lines 210--210
-[]    \OT1/cmtt/m/n/10 "Rule 17 fired: IF road(capacity > 50%) AND noIncident T
-HEN extendGreenTime.",[] 
- []
-
-
-Overfull \hbox (248.24483pt too wide) in paragraph at lines 210--210
-[]    \OT1/cmtt/m/n/10 "Rule 23 fired: IF policy.publicTransportPriority = true
- AND weather.condition = rain THEN increasePriority."[] 
- []
-
-[8] [9] (./ResearchPaper.bbl) [10] (./ResearchPaper.aux) ) 
+[5] [6] [7] [8] (./ResearchPaper.bbl) [9] (./ResearchPaper.aux) ) 
 Here is how much of TeX's memory you used:
  812 strings out of 476025
  14780 string characters out of 5796499
@@ -217,18 +133,18 @@ Here is how much of TeX's memory you used:
  21316 multiletter control sequences out of 15000+600000
  517056 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,6n,38p,1301b,200s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on ResearchPaper.pdf (10 pages, 136537 bytes).
+ 34i,6n,38p,1182b,268s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on ResearchPaper.pdf (9 pages, 131468 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 69 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
