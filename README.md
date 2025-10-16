@@ -1,3 +1,15 @@
+# Neuron
+
+## How to start?
+
+```
+make start
+```
+
+```
+docker ps
+```
+
 ## API Calls
 
 #### Admin Login
